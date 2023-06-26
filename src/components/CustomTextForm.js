@@ -12,8 +12,8 @@ const CustomTextForm = ({ onSubmit }) => {
     <form onSubmit={handleSubmit} className={classes.form}>
       <h2 className={classes.title}>Input the text you want to practice</h2>
       <textarea
-        maxlength="300"
-        minlength="50"
+        maxLength="300"
+        minLength="50"
         required
         rows="7"
         value={input}

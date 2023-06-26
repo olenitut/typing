@@ -26,7 +26,8 @@ const Text = ({ customText }) => {
         //if the whole text has been practiced
         if (position === practiceText.length - 1) {
           const stat =
-            (actions.filter((action) => action === "right").length /
+            ([...actions, "right"].filter((action) => action === "right")
+              .length /
               practiceText.length) *
             100;
           dispatch(setStat(stat));

@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const storedStats = localStorage.getItem("accuracyStats");
     if (storedStats) {
-      dispatch(setStat(JSON.parse(storedStats).slice(0, 50)));
+      dispatch(setStat(JSON.parse(storedStats).reverse().slice(0, 10)));
     }
   }, [dispatch]);
 
