@@ -30,15 +30,20 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Stats onAddText={() => setShowAddModal(true)} />
-      <Text customText={customText} />
-      <Keyboard />
-      {showAddModal && (
-        <Modal onClose={() => setShowAddModal(false)}>
-          <CustomTextForm onSubmit={handleSetCustomText} />
-        </Modal>
-      )}
+    <div>
+      <div className="App">
+        <Stats onAddText={() => setShowAddModal(true)} />
+        <Text customText={customText} />
+        <Keyboard />
+        {showAddModal && (
+          <Modal onClose={() => setShowAddModal(false)}>
+            <CustomTextForm onSubmit={handleSetCustomText} />
+          </Modal>
+        )}
+      </div>
+      <div className="mobile">
+        This application is for desctop users only
+      </div>
     </div>
   );
 }
