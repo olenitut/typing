@@ -15,8 +15,6 @@ root.render(
   </React.StrictMode>
 );
 
-// 6. own text
-
 //v2 specigic letters
 //?? letter stats
 //?? levls? letter by letter
