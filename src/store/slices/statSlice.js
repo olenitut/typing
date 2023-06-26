@@ -10,6 +10,7 @@ const statSlice = createSlice({
   reducers: {
     setStat(state, { payload }) {
       state.accuracyStats = state.accuracyStats.concat(payload);
+      //add stats to local storage
       localStorage.setItem(
         "accuracyStats",
         JSON.stringify(state.accuracyStats)

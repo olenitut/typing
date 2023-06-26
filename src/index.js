@@ -15,9 +15,9 @@ root.render(
   </React.StrictMode>
 );
 
-//5. comments
 // 6. own text
 
 //v2 specigic letters
 //?? letter stats
 //?? levls? letter by letter
+// how fingeers should be put "?"

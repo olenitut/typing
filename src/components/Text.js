@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setStat } from "../store/slices/statSlice";
 
-const Text = () => {
-  const [practiceText, setPracticeText] = useState(generateRandom(5));
+const Text = ({ customText }) => {
+  const [practiceText, setPracticeText] = useState(generateRandom(30));
   const [position, setPosition] = useState(0);
   const [actions, setActions] = useState([]);
 
@@ -15,9 +15,7 @@ const Text = () => {
   useEffect(() => {
     const handleKeyPress = (event) => {
       let { key } = event;
-      if (!key) {
-        return;
-      }
+
       // If the key pressed is correct
       if (key === practiceText[position]) {
         // If the letter at the current position has already been wrong, we do not overwrite it
@@ -25,13 +23,14 @@ const Text = () => {
           setActions((prevState) => [...prevState, "right"]);
         }
         setPosition((prevState) => prevState + 1);
+        //if the whole text has been practiced
         if (position === practiceText.length - 1) {
           const stat =
             (actions.filter((action) => action === "right").length /
               practiceText.length) *
             100;
           dispatch(setStat(stat));
-          setPracticeText(generateRandom(5));
+          setPracticeText(generateRandom(30));
           setPosition(0);
           setActions([]);
         }
@@ -48,6 +47,14 @@ const Text = () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
   }, [practiceText, position, actions, dispatch]);
+
+  useEffect(() => {
+    if (customText) {
+      setPracticeText(customText.trim().toLowerCase());
+      setPosition(0);
+      setActions([]);
+    }
+  }, [customText]);
 
   return (
     <section className={classes["text-container"]}>
