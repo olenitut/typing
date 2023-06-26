@@ -10,6 +10,10 @@ const statSlice = createSlice({
   reducers: {
     setStat(state, { payload }) {
       state.accuracyStats = state.accuracyStats.concat(payload);
+      localStorage.setItem(
+        "accuracyStats",
+        JSON.stringify(state.accuracyStats)
+      );
     },
   },
 });

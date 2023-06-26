@@ -2,11 +2,15 @@ import classes from "./text.module.css";
 import { generateRandom } from "../data/generateText";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setStat } from "../store/slices/statSlice";
 
 const Text = () => {
-  const [practiceText, setPracticeText] = useState(generateRandom(50));
+  const [practiceText, setPracticeText] = useState(generateRandom(5));
   const [position, setPosition] = useState(0);
   const [actions, setActions] = useState([]);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -21,11 +25,15 @@ const Text = () => {
           setActions((prevState) => [...prevState, "right"]);
         }
         setPosition((prevState) => prevState + 1);
-        if (position === practiceText.length) {
+        if (position === practiceText.length - 1) {
           const stat =
             (actions.filter((action) => action === "right").length /
               practiceText.length) *
             100;
+          dispatch(setStat(stat));
+          setPracticeText(generateRandom(5));
+          setPosition(0);
+          setActions([]);
         }
       } else {
         // If the letter is not correct
@@ -39,7 +47,7 @@ const Text = () => {
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, [practiceText, position, actions]);
+  }, [practiceText, position, actions, dispatch]);
 
   return (
     <section className={classes["text-container"]}>

@@ -15,10 +15,8 @@ root.render(
   </React.StrictMode>
 );
 
-//2. next round logic
-//3. stats
-//4. words arr
-//5. localstorage
+//5. comments
+// 6. own text
 
 //v2 specigic letters
 //?? letter stats
